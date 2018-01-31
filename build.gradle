@@ -1,8 +1,11 @@
-apply plugin: 'java'
+//apply plugin: 'java'
+apply plugin: 'war'
 apply plugin: 'maven'
+
 
 group = 'com.concretepage'
 version = '0.0.1-SNAPSHOT'
+war.archiveName = rootProject.name + ".war"
 
 description = """spring-demo"""
 
@@ -23,4 +26,16 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.5.3.RELEASE'
     compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.41'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version:'1.5.3.RELEASE'
+}
+
+task deployToTomcat(dependsOn:build) {
+   description "Copia el war en el path de Tomcat"
+   doLast {
+	   copy {    
+	       println "in deployToTomcat"
+	       from war.archivePath
+	       into tomcatHome 
+	   }
+       println "Fin copia del fichero war sobre el path de tomcat"
+   }     
 }
