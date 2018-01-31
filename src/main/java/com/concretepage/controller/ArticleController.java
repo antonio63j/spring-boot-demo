@@ -21,7 +21,7 @@ import com.concretepage.service.IArticleService;
 
 @Controller
 @RequestMapping("user")
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins =  {"http://localhost:8082", "http://localhost:4200"})
 public class ArticleController {
 	@Autowired
 	private IArticleService articleService;
